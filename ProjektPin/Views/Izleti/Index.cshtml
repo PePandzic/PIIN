@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProjektPin.Models.Izleti>
+
+@{
+    ViewData["Title"] = "Izleti";
+}
+
+<h1>Izleti</h1>
+
+<p>
+    <a asp-action="Create">Dodaj novi izlet</a>
+</p>
+<form typeof="get">
+    Pretraži:
+    <input type="search" name="search" value="@ViewBag.Search" />
+    <input type="submit" value="Traži" />
+</form>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naziv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mjesto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mjesto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Izmjeni</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalji</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Obrisi</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
